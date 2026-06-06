@@ -221,6 +221,52 @@ function update() {
         `Position: ${pixelWorld.playerX}, ${pixelWorld.playerY}`;
 }
 
+function drawPlayer(ctx, screenX, screenY) {
+    // Draw player body - bigger and brighter
+    ctx.fillStyle = '#FFD700'; // Gold color - very visible!
+    ctx.fillRect(screenX + 2, screenY + 2, 28, 28);
+    
+    // Draw body outline - strong border
+    ctx.strokeStyle = '#FF6B00'; // Orange outline
+    ctx.lineWidth = 3;
+    ctx.strokeRect(screenX + 2, screenY + 2, 28, 28);
+    
+    // Draw left eye
+    ctx.fillStyle = '#000000';
+    ctx.fillRect(screenX + 7, screenY + 8, 4, 4);
+    ctx.fillStyle = '#FFFFFF';
+    ctx.fillRect(screenX + 8, screenY + 8, 2, 2);
+    
+    // Draw right eye
+    ctx.fillStyle = '#000000';
+    ctx.fillRect(screenX + 19, screenY + 8, 4, 4);
+    ctx.fillStyle = '#FFFFFF';
+    ctx.fillRect(screenX + 20, screenY + 8, 2, 2);
+    
+    // Draw mouth - smile
+    ctx.strokeStyle = '#000000';
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.arc(screenX + 16, screenY + 18, 3, 0, Math.PI, false);
+    ctx.stroke();
+    
+    // Draw arms
+    ctx.fillStyle = '#FFD700';
+    ctx.fillRect(screenX - 2, screenY + 10, 4, 10); // Left arm
+    ctx.fillRect(screenX + 28, screenY + 10, 4, 10); // Right arm
+    
+    // Draw arms outline
+    ctx.strokeStyle = '#FF6B00';
+    ctx.lineWidth = 1;
+    ctx.strokeRect(screenX - 2, screenY + 10, 4, 10);
+    ctx.strokeRect(screenX + 28, screenY + 10, 4, 10);
+    
+    // Draw legs
+    ctx.fillStyle = '#333333';
+    ctx.fillRect(screenX + 7, screenY + 28, 4, 4); // Left leg
+    ctx.fillRect(screenX + 19, screenY + 28, 4, 4); // Right leg
+}
+
 function renderGame(game) {
     const ctx = game.canvas.getContext('2d');
     const viewportWidth = game.canvas.width;
@@ -257,19 +303,19 @@ function renderGame(game) {
         }
     }
 
-    // Draw player
+    // Draw player with better visibility
     const playerScreenX = pixelWorld.playerX * TILE_SIZE - cameraOffsetX;
     const playerScreenY = pixelWorld.playerY * TILE_SIZE - cameraOffsetY;
+    
+    drawPlayer(ctx, playerScreenX, playerScreenY);
 
-    ctx.fillStyle = '#ff6b6b';
-    ctx.fillRect(playerScreenX + 2, playerScreenY + 2, TILE_SIZE - 4, TILE_SIZE - 4);
-    ctx.strokeStyle = '#cc5555';
-    ctx.lineWidth = 2;
-    ctx.strokeRect(playerScreenX + 2, playerScreenY + 2, TILE_SIZE - 4, TILE_SIZE - 4);
-
-    // Draw selected block indicator
-    ctx.fillStyle = 'rgba(0, 255, 0, 0.3)';
+    // Draw selected block indicator - green glow
+    ctx.fillStyle = 'rgba(0, 255, 0, 0.2)';
     ctx.fillRect(playerScreenX, playerScreenY, TILE_SIZE, TILE_SIZE);
+    
+    ctx.strokeStyle = 'rgba(0, 255, 0, 0.6)';
+    ctx.lineWidth = 2;
+    ctx.strokeRect(playerScreenX, playerScreenY, TILE_SIZE, TILE_SIZE);
 
     // Update FPS
     const fps = Math.round(game.loop.actualFps);
