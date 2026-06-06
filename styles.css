@@ -1,0 +1,253 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    overflow: hidden;
+    height: 100vh;
+}
+
+#game-container {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+}
+
+#game {
+    flex: 1;
+    position: relative;
+    background: #87CEEB;
+}
+
+#ui-panel {
+    width: 280px;
+    background: rgba(20, 20, 30, 0.95);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    border-left: 2px solid #667eea;
+    overflow-y: auto;
+    box-shadow: -5px 0 20px rgba(0, 0, 0, 0.5);
+}
+
+#top-panel {
+    padding: 15px;
+    border-bottom: 2px solid #667eea;
+    background: rgba(102, 126, 234, 0.2);
+}
+
+#player-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+#player-name {
+    color: #ffd700;
+}
+
+#connection-status {
+    font-weight: bold;
+}
+
+#sidebar {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    gap: 20px;
+    overflow-y: auto;
+}
+
+h3 {
+    color: #667eea;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #667eea;
+    padding-bottom: 5px;
+}
+
+.control-list {
+    font-size: 12px;
+    line-height: 1.6;
+    color: #bdc3c7;
+}
+
+.control-list div {
+    padding: 5px 0;
+    border-bottom: 1px solid rgba(102, 126, 234, 0.2);
+}
+
+#inventory {
+    background: rgba(102, 126, 234, 0.1);
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #667eea;
+}
+
+#inventory-items {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.inventory-item {
+    background: rgba(255, 215, 0, 0.1);
+    border: 2px solid #666;
+    border-radius: 5px;
+    padding: 10px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 12px;
+}
+
+.inventory-item:hover {
+    background: rgba(255, 215, 0, 0.2);
+    border-color: #ffd700;
+}
+
+.inventory-item.selected {
+    background: rgba(255, 215, 0, 0.3);
+    border-color: #ffd700;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+.inventory-item div:first-child {
+    font-size: 24px;
+    margin-bottom: 5px;
+}
+
+#stats {
+    background: rgba(102, 126, 234, 0.1);
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #667eea;
+    font-size: 12px;
+    line-height: 1.8;
+    color: #bdc3c7;
+}
+
+#stats div {
+    display: flex;
+    justify-content: space-between;
+}
+
+#server-panel {
+    background: rgba(102, 126, 234, 0.15);
+    padding: 12px;
+    border-radius: 5px;
+    border: 1px solid #667eea;
+    margin-top: auto;
+}
+
+#auth-section,
+#world-section {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+input[type="text"],
+input[type="password"],
+select {
+    padding: 8px 10px;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid #667eea;
+    color: #fff;
+    border-radius: 3px;
+    font-size: 12px;
+    transition: all 0.3s;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+select:focus {
+    outline: none;
+    border-color: #ffd700;
+    background: rgba(255, 215, 0, 0.1);
+    box-shadow: 0 0 10px rgba(102, 126, 234, 0.5);
+}
+
+input::placeholder {
+    color: #999;
+}
+
+button {
+    padding: 8px 12px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
+    color: #fff;
+    border-radius: 3px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 12px;
+    transition: all 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+#controls {
+    background: rgba(102, 126, 234, 0.1);
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #667eea;
+}
+
+/* Scrollbar Styling */
+#ui-panel::-webkit-scrollbar,
+#sidebar::-webkit-scrollbar {
+    width: 8px;
+}
+
+#ui-panel::-webkit-scrollbar-track,
+#sidebar::-webkit-scrollbar-track {
+    background: rgba(102, 126, 234, 0.1);
+}
+
+#ui-panel::-webkit-scrollbar-thumb,
+#sidebar::-webkit-scrollbar-thumb {
+    background: #667eea;
+    border-radius: 4px;
+}
+
+#ui-panel::-webkit-scrollbar-thumb:hover,
+#sidebar::-webkit-scrollbar-thumb:hover {
+    background: #764ba2;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    #ui-panel {
+        width: 100%;
+        max-height: 200px;
+        border-left: none;
+        border-top: 2px solid #667eea;
+    }
+
+    #game-container {
+        flex-direction: column;
+    }
+
+    #inventory-items {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
