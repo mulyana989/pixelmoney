@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PixelWorld - Sandbox Game</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #1a1a1a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: #fff;
+        }
+
+        #game-container {
+            position: relative;
+        }
+
+        canvas {
+            display: block;
+            border: 2px solid #333;
+        }
+
+        #ui {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 15px;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        #inventory {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 15px;
+            border-radius: 5px;
+            max-width: 400px;
+        }
+
+        #inventory h3 {
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .inventory-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
+            gap: 5px;
+        }
+
+        .inventory-item {
+            background: #333;
+            padding: 8px;
+            border-radius: 3px;
+            text-align: center;
+            cursor: pointer;
+            border: 2px solid #555;
+            transition: all 0.2s;
+        }
+
+        .inventory-item:hover {
+            border-color: #0f0;
+            transform: scale(1.05);
+        }
+
+        .inventory-item.selected {
+            border-color: #0f0;
+            background: #1a3a1a;
+        }
+
+        #controls {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 15px;
+            border-radius: 5px;
+            font-size: 12px;
+            text-align: right;
+        }
+
+        .control-item {
+            margin: 5px 0;
+        }
+
+        #fps {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div id="game-container">
+        <div id="ui">
+            <div>🎮 PixelWorld</div>
+            <div id="coords">Position: 0, 0</div>
+        </div>
+        <div id="fps">FPS: 0</div>
+        <div id="inventory">
+            <h3>📦 Inventory</h3>
+            <div class="inventory-items" id="inventory-items"></div>
+        </div>
+        <div id="controls">
+            <div class="control-item"><strong>Controls:</strong></div>
+            <div class="control-item">↑↓←→ or WASD - Move</div>
+            <div class="control-item">Mouse Click - Place Block</div>
+            <div class="control-item">Right Click - Remove Block</div>
+            <div class="control-item">1-6 - Select Block Type</div>
+            <div class="control-item">S - Save Game</div>
+            <div class="control-item">L - Load Game</div>
+            <div class="control-item">C - Clear World</div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.55.2/dist/phaser.js"></script>
+    <script src="js/game.js"></script>
+</body>
+</html>
